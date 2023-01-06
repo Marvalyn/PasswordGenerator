@@ -1,5 +1,5 @@
 // Array of special characters to be included in password
-var specialCharacters = [
+var specialChar = [
   '@',
   '%',
   '+',
@@ -26,10 +26,10 @@ var specialCharacters = [
 ];
 
 // Array of numeric characters to be included in password
-var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var numChar = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 // Array of lowercase characters to be included in password
-var lowerCasedCharacters = [
+var lowerChar = [
   'a',
   'b',
   'c',
@@ -59,7 +59,7 @@ var lowerCasedCharacters = [
 ];
 
 // Array of uppercase characters to be included in password
-var upperCasedCharacters = [
+var upperChar = [
   'A',
   'B',
   'C',
@@ -91,11 +91,17 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
 var length = prompt("How many characters will your password be?");
+// if (isNaN(length) || length < 8 || length > 64) {
+  // alert("Oops. Input not valid");
 if (length  < 8){
   alert("Oops, your password has to be at least 8 characters"); 
 }
 else if (length > 64){
   alert("Oops your password has to be less than 65 characters");
+}
+else if (isNaN(length)){
+  alert("Oops, input is not valid, please enter a number")
+  return
 }
 var lowChar = confirm("Will your password use lowerchase characters?");
 if (lowChar === false) {
@@ -115,16 +121,49 @@ if (spesh === false) {
 } 
 }
 
-getPasswordOptions()
+// getPasswordOptions()
 // calls function but without this function doesn't run when generate password button is pressed
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  function getRandomLower() {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+  }
+  function getRandomUpper() {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+  }
+  function getRandomNumber() {
+    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+  }
+  function getRandomSymbol() {
+    return specialChar[Math.floor(Math.random() * specialChar.length)];
+  }
 }
 
 // Function to generate password with user input
+// generateBtn.addEventListener("click", () => {
+//   const length = passLength.value;
+//   const numbers = includeNumbers.checked;
+//   const symbols = includeSymbols.checked;
+//   result.value = generatePassword(numbers, symbols, length);
+// });
 function generatePassword() {
+  console.log("You clicked the button");
 
+
+  return (password)
+  // let generatedPassword = "";
+  // let variationsCount = [number, symbol].length;
+  // for (let i = 0; i < length; i += variationsCount) {
+  //   if (number) {
+  //     generatedPassword += getRandomNumber();
+  //   }
+  //   if (symbol) {
+  //     generatedPassword += getRandomSymbol();
+  //   }
+  //   generatedPassword += getRandomLower();
+  // }
+  // const finalPassword = generatedPassword.slice(0, length);
+  // return finalPassword;
 }
 
 // Get references to the #generate element
@@ -133,6 +172,7 @@ var generateBtn = document.querySelector('#generate');
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+  
   var passwordText = document.querySelector('#password');
 
   passwordText.value = password;
