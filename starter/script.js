@@ -90,9 +90,33 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+var length = prompt("How many characters will your password be?");
+if (length  < 8){
+  alert("Oops, your password has to be at least 8 characters"); 
+}
+else if (length > 64){
+  alert("Oops your password has to be less than 65 characters");
+}
+var lowChar = confirm("Will your password use lowerchase characters?");
+if (lowChar === false) {
+  alert("Oops, you have to include lowercase characters");
+}
+var upChar = confirm("Will your password use uppercase characters?");
+if (upChar === false) {
+  alert("Oops, you have to include uppercase characters");
+} 
+var num = confirm("Will your password use numeric characters?");
+if (num === false) {
+  alert("Oops, you have to include numeric characters");
+} 
+var spesh = confirm("Will your password use special characters?");
+if (spesh === false) {
+  alert("Oops, you have to include uppercase characters");
+} 
 }
 
+getPasswordOptions()
+// calls function but without this function doesn't run when generate password button is pressed
 // Function for getting a random element from an array
 function getRandom(arr) {
 
