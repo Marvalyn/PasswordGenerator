@@ -96,8 +96,8 @@ function getPasswordOptions() {
   choiceArr =[];
 
   charLength = prompt("How many characters will your password be?");
-if (charLength  < 8){
-  alert("Oops, your password has to be at least 8 characters"); 
+if (charLength  < 10){
+  alert("Oops, your password has to be at least 10 characters"); 
   return false;
 }
 else if (charLength > 64){
