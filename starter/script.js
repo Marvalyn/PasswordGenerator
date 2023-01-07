@@ -1,4 +1,7 @@
 // Array of special characters to be included in password
+var charLength = 8;
+var choiceArr = [];
+
 var specialChar = [
   '@',
   '%',
@@ -90,35 +93,51 @@ var upperChar = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-var length = prompt("How many characters will your password be?");
-// if (isNaN(length) || length < 8 || length > 64) {
-  // alert("Oops. Input not valid");
-if (length  < 8){
+  charLength = prompt("How many characters will your password be?");
+if (charLength  < 8){
   alert("Oops, your password has to be at least 8 characters"); 
 }
-else if (length > 64){
+else if (charLength > 64){
   alert("Oops your password has to be less than 65 characters");
 }
-else if (isNaN(length)){
+else if (isNaN(charLength)){
   alert("Oops, input is not valid, please enter a number")
   return
 }
+
 var lowChar = confirm("Will your password use lowerchase characters?");
-if (lowChar === false) {
+if (lowChar === true) {
+  choiceArr = choiceArr.concat(lowerChar);
+}
+else if (lowChar === false) {
   alert("Oops, you have to include lowercase characters");
 }
+
 var upChar = confirm("Will your password use uppercase characters?");
-if (upChar === false) {
+if(upChar === true) {
+  choiceArr = choiceArr.concat(upperChar);
+}
+
+else if(upChar === false) {
   alert("Oops, you have to include uppercase characters");
 } 
+
 var num = confirm("Will your password use numeric characters?");
-if (num === false) {
+if(num === true) {
+  choiceArr = choiceArr.concat(numChar);
+}
+else if (num === false) {
   alert("Oops, you have to include numeric characters");
 } 
+
 var spesh = confirm("Will your password use special characters?");
-if (spesh === false) {
+if(spesh === true) {
+  choiceArr = choiceArr.concat(specialChar);
+}
+else if (spesh === false) {
   alert("Oops, you have to include uppercase characters");
 } 
+return true;
 }
 
 // getPasswordOptions()
@@ -150,7 +169,7 @@ function generatePassword() {
   console.log("You clicked the button");
 
 
-  return (password)
+  return password;
   // let generatedPassword = "";
   // let variationsCount = [number, symbol].length;
   // for (let i = 0; i < length; i += variationsCount) {
