@@ -98,13 +98,15 @@ function getPasswordOptions() {
   charLength = prompt("How many characters will your password be?");
 if (charLength  < 8){
   alert("Oops, your password has to be at least 8 characters"); 
+  return false;
 }
 else if (charLength > 64){
   alert("Oops your password has to be less than 65 characters");
+  return false;
 }
 else if (isNaN(charLength)){
   alert("Oops, input is not valid, please enter a number")
-  return
+  return false;
 }
 
 var lowChar = confirm("Will your password use lowerchase characters?");
@@ -113,6 +115,7 @@ if (lowChar === true) {
 }
 else if (lowChar === false) {
   alert("Oops, you have to include lowercase characters");
+  return false;
 }
 
 var upChar = confirm("Will your password use uppercase characters?");
@@ -122,6 +125,7 @@ if(upChar === true) {
 
 else if(upChar === false) {
   alert("Oops, you have to include uppercase characters");
+  return false;
 } 
 
 var num = confirm("Will your password use numeric characters?");
@@ -130,6 +134,7 @@ if(num === true) {
 }
 else if (num === false) {
   alert("Oops, you have to include numeric characters");
+  return false;
 } 
 
 var spesh = confirm("Will your password use special characters?");
@@ -138,6 +143,7 @@ if(spesh === true) {
 }
 else if (spesh === false) {
   alert("Oops, you have to include special characters");
+  return false
 } 
 return true;
 }
