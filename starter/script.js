@@ -93,6 +93,8 @@ var upperChar = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  choiceArr =[];
+
   charLength = prompt("How many characters will your password be?");
 if (charLength  < 8){
   alert("Oops, your password has to be at least 8 characters"); 
@@ -135,54 +137,24 @@ if(spesh === true) {
   choiceArr = choiceArr.concat(specialChar);
 }
 else if (spesh === false) {
-  alert("Oops, you have to include uppercase characters");
+  alert("Oops, you have to include special characters");
 } 
 return true;
 }
 
-// getPasswordOptions()
-// calls function but without this function doesn't run when generate password button is pressed
+
 // Function for getting a random element from an array
-function getRandom(arr) {
-  function getRandomLower() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-  }
-  function getRandomUpper() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-  }
-  function getRandomNumber() {
-    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-  }
-  function getRandomSymbol() {
-    return specialChar[Math.floor(Math.random() * specialChar.length)];
-  }
-}
+// function getRandom(arr) 
 
-// Function to generate password with user input
-// generateBtn.addEventListener("click", () => {
-//   const length = passLength.value;
-//   const numbers = includeNumbers.checked;
-//   const symbols = includeSymbols.checked;
-//   result.value = generatePassword(numbers, symbols, length);
-// });
 function generatePassword() {
-  console.log("You clicked the button");
-
+  var password = "";
+  for (var i = 0; i < charLength; i ++){
+var randomChar = Math.floor(Math.random() * choiceArr.length);
+password = password + choiceArr[randomChar];
+  }
 
   return password;
-  // let generatedPassword = "";
-  // let variationsCount = [number, symbol].length;
-  // for (let i = 0; i < length; i += variationsCount) {
-  //   if (number) {
-  //     generatedPassword += getRandomNumber();
-  //   }
-  //   if (symbol) {
-  //     generatedPassword += getRandomSymbol();
-  //   }
-  //   generatedPassword += getRandomLower();
-  // }
-  // const finalPassword = generatedPassword.slice(0, length);
-  // return finalPassword;
+  
 }
 
 // Get references to the #generate element
@@ -190,11 +162,14 @@ var generateBtn = document.querySelector('#generate');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  
+  var prompts = getPasswordOptions();
   var passwordText = document.querySelector('#password');
 
-  passwordText.value = password;
+  if(prompts){
+    var password = generatePassword();
+    passwordText.value = password;
+  }
+ 
 }
 
 // Add event listener to generate button
