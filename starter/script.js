@@ -93,65 +93,61 @@ var upperChar = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  choiceArr =[];
+  choiceArr = [];
 
   charLength = prompt("How many characters will your password be?");
-if (charLength  < 10){
-  alert("Oops, your password has to be at least 10 characters"); 
-  return false;
-}
-else if (charLength > 64){
-  alert("Oops your password has to be less than 65 characters");
-  return false;
-}
-else if (isNaN(charLength)){
-  alert("Oops, input is not valid, please enter a number")
-  return false;
-}
+  if (charLength < 10) {
+    alert("Oops, your password has to be at least 10 characters");
+    return false;
+  }
+  else if (charLength > 64) {
+    alert("Oops your password has to be less than 65 characters");
+    return false;
+  }
+  else if (isNaN(charLength)) {
+    alert("Oops, input is not valid, please enter a number")
+    return false;
+  }
 
-var lowChar = confirm("Will your password use lowerchase characters?");
-if (lowChar === true) {
-  choiceArr = choiceArr.concat(lowerChar);
-}
-else if (lowChar === false) {
-  alert("Your password will not include lowercase characters");
-  // return false;
-}
+  var lowChar = confirm("Will your password use lowerchase characters?");
+  if (lowChar === true) {
+    choiceArr = choiceArr.concat(lowerChar);
+  }
+  else if (lowChar === false) {
+    alert("Your password will not include lowercase characters");
+  }
 
-var upChar = confirm("Will your password use uppercase characters?");
-if(upChar === true) {
-  choiceArr = choiceArr.concat(upperChar);
-}
+  var upChar = confirm("Will your password use uppercase characters?");
+  if (upChar === true) {
+    choiceArr = choiceArr.concat(upperChar);
+  }
 
-else if(upChar === false) {
-  alert("Your password will not include uppercase characters");
-  // return false;
-} 
+  else if (upChar === false) {
+    alert("Your password will not include uppercase characters");
+  }
 
-var num = confirm("Will your password use numeric characters?");
-if(num === true) {
-  choiceArr = choiceArr.concat(numChar);
-}
-else if (num === false) {
-  alert("Your password will not include numeric characters");
-  // return false;
-} 
+  var num = confirm("Will your password use numeric characters?");
+  if (num === true) {
+    choiceArr = choiceArr.concat(numChar);
+  }
+  else if (num === false) {
+    alert("Your password will not include numeric characters");
+  }
 
-var spesh = confirm("Will your password use special characters?");
-if(spesh === true) {
-  choiceArr = choiceArr.concat(specialChar);
-}
-else if (spesh === false) {
-  alert("Your password will not include special characters");
-  // return false
-} 
+  var spesh = confirm("Will your password use special characters?");
+  if (spesh === true) {
+    choiceArr = choiceArr.concat(specialChar);
+  }
+  else if (spesh === false) {
+    alert("Your password will not include special characters");
+  }
+  // to check if at least one character type has been selected
+  if (lowChar === false && upChar === false && num === false && spesh === false) {
+    alert("Your password should contain at least one character type");
 
-if (lowChar===false && upChar === false && num === false && spesh === false) {
-  alert("Your password should at least one character type selected");
-
-  return false;
-}
-return true;
+    return false;
+  }
+  return true;
 }
 
 
@@ -159,13 +155,13 @@ return true;
 
 function generatePassword() {
   var password = "";
-  for (var i = 0; i < charLength; i ++){
-var randomChar = Math.floor(Math.random() * choiceArr.length);
-password = password + choiceArr[randomChar];
+  for (var i = 0; i < charLength; i++) {
+    var randomChar = Math.floor(Math.random() * choiceArr.length);
+    password = password + choiceArr[randomChar];
   }
 
   return password;
-  
+
 }
 
 // Get references to the #generate element
@@ -176,11 +172,11 @@ function writePassword() {
   var prompts = getPasswordOptions();
   var passwordText = document.querySelector('#password');
 
-  if(prompts){
+  if (prompts) {
     var password = generatePassword();
     passwordText.value = password;
   }
- 
+
 }
 
 // Add event listener to generate button
