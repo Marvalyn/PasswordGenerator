@@ -114,8 +114,8 @@ if (lowChar === true) {
   choiceArr = choiceArr.concat(lowerChar);
 }
 else if (lowChar === false) {
-  alert("Oops, you have to include lowercase characters");
-  return false;
+  alert("Your password will not include lowercase characters");
+  // return false;
 }
 
 var upChar = confirm("Will your password use uppercase characters?");
@@ -124,8 +124,8 @@ if(upChar === true) {
 }
 
 else if(upChar === false) {
-  alert("Oops, you have to include uppercase characters");
-  return false;
+  alert("Your password will not include uppercase characters");
+  // return false;
 } 
 
 var num = confirm("Will your password use numeric characters?");
@@ -133,8 +133,8 @@ if(num === true) {
   choiceArr = choiceArr.concat(numChar);
 }
 else if (num === false) {
-  alert("Oops, you have to include numeric characters");
-  return false;
+  alert("Your password will not include numeric characters");
+  // return false;
 } 
 
 var spesh = confirm("Will your password use special characters?");
@@ -142,15 +142,20 @@ if(spesh === true) {
   choiceArr = choiceArr.concat(specialChar);
 }
 else if (spesh === false) {
-  alert("Oops, you have to include special characters");
-  return false
+  alert("Your password will not include special characters");
+  // return false
 } 
+
+if (lowChar===false && upChar === false && num === false && spesh === false) {
+  alert("Your password should at least one character type selected");
+
+  return false;
+}
 return true;
 }
 
 
 // Function for getting a random element from an array
-// function getRandom(arr) 
 
 function generatePassword() {
   var password = "";
